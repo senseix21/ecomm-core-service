@@ -1,88 +1,89 @@
-# Backend Boilerplate - Postgres & Prisma
 
-This guide will walk you through the process of setting up a backend boilerplate project with PostgreSQL and Prisma. By following these steps, you will clone the project, install dependencies, and configure Prisma for database management. Let's get started!
 
-## Installation Steps
+# Ecommerce Backend
 
-Follow these steps to set up the backend boilerplate project:
+## Overview
 
-### 1. Clone the Project
+This is the backend component of an Ecommerce web application. It provides the server-side logic and APIs required for managing user accounts, products, orders, and more.
 
-Open your terminal or command prompt and run the following command to clone the project repository:
+## Features
 
-```bash
-git clone https://github.com/senseix21/Backend-boilerplate-Postgres-Prisma/ your-backend-project
-```
+- User authentication and authorization.
+- Product catalog management.
+- Shopping cart functionality.
+- Order processing and tracking.
+- Security measures including encryption (bcrypt) and JWT-based authentication.
+- Logging and error handling (Winston).
 
-Navigate into the project directory:
+## Technologies Used
 
-```bash
-cd your-backend-project
-```
+- Node.js
+- Express.js
+- TypeScript
+- Prisma (Database ORM)
+- JSON Web Tokens (JWT) for authentication
+- Bcrypt for password hashing
+- Winston for logging
+- Zod for data validation
+- Cors for Cross-Origin Resource Sharing
 
-### 2. Install Project Dependencies
+## Prerequisites
 
-Install the project dependencies by running the following command:
+Before running the project, make sure you have the following dependencies installed:
 
-```bash
-yarn install
-```
+- Node.js
+- npm or yarn
+- Prisma CLI (globally installed)
 
-### 3. Configure Prisma and Database Connection
+## Getting Started
 
-#### a. Add Prisma as a Development Dependency
+1. Clone the repository:
 
-Add Prisma as a development dependency by running the following command:
+   ```bash
+   git clone <repository-url>
+   ```
 
-```bash
-yarn add prisma --save-dev
-```
+2. Install dependencies:
 
-#### b. Set Up Your Prisma Project
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
 
-Create the Prisma schema file using the following command:
+3. Configure environment variables:
+   Create a `.env` file in the project root and configure the necessary environment variables, including database connection details and JWT secrets.
 
-```bash
-npx prisma init
-```
+4. Database migration:
 
-Open the `prisma/schema.prisma` file and configure your database connection details. Modify the `datasource` block to match your database provider and connection URL:
+   ```bash
+   npx prisma db migrate
+   ```
 
-```prisma
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-}
-```
+5. Start the development server:
 
-#### c. Create a .env File
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
 
-Create a `.env` file in the project root directory and set the `DATABASE_URL` environment variable. Replace the placeholders with your database connection details:
+The server should now be running locally at `http://localhost:your-port`. You can begin making API requests to the specified endpoints.
 
-```dotenv
-DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DATABASE?schema=SCHEMA"
-```
+## Scripts
 
-### 4. Creating the Database Schema
+- `npm start` or `yarn start`: Starts the server in production mode.
+- `npm run dev` or `yarn dev`: Starts the server in development mode with hot-reloading using ts-node-dev.
+- `npm test` or `yarn test`: Run your test suite.
+- `npm run lint-check` or `yarn lint-check`: Check your code for linting errors.
+- `npm run lint-fix` or `yarn lint-fix`: Fix linting errors automatically.
+- `npm run prettier-check` or `yarn prettier-check`: Check your code formatting with Prettier.
+- `npm run prettier-fix` or `yarn prettier-fix`: Format your code automatically with Prettier.
 
-Migrate the database schema using the following command:
+## License
 
-```bash
-npx prisma migrate dev --name init
-```
+This project is licensed under the [ISC License](LICENSE).
 
-This command creates a new migration file based on your schema changes and applies it to your database.
+---
 
-### 5. Install Prisma Client
-
-Install the Prisma Client library by running the following command:
-
-```bash
-yarn add @prisma/client
-```
-
-The Prisma Client provides an interface to interact with your database.
-
-That's it! You have successfully set up the Backend Boilerplate project with PostgreSQL and Prisma. You can now start exploring and working with the codebase. Refer to the project documentation or README for further instructions on how to run and use the backend service.
-
-Happy coding!
+Feel free to add more sections, documentation, and details as per your project's requirements.
