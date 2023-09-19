@@ -9,3 +9,137 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+enum UserType {
+  CUSTOMER
+  VENDOR
+  ADMIN
+}
+
+enum OrderStatus {
+  PENDING
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+model User {
+  id          String        @id @unique @default(uuid())
+  username    String        @unique
+  email       String        @unique
+  password    String
+  userType    UserType      @default(CUSTOMER)
+  Product     Product[]
+  VendorStore VendorStore[]
+  Review      Review[]
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  Order       Order[]
+  Cart        Cart[]
+
+  @@map("user")
+}
+
+model VendorStore {
+  id          String    @id @unique @default(uuid())
+  storeName   String
+  description String
+  userId      String
+  user        User      @relation(fields: [userId], references: [id])
+  products    Product[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@map("vendorStore")
+}
+
+model Category {
+  id          String    @id @unique @default(uuid())
+  name        String
+  description String
+  products    Product[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@map("category")
+}
+
+model Product {
+  id             String      @id @unique @default(uuid())
+  title          String
+  description    String
+  price          String
+  stock_quantity String
+  category_id    String
+  category       Category    @relation(fields: [category_id], references: [id])
+  vendorId       String
+  vendor         User?       @relation(fields: [vendorId], references: [id])
+  vendorStoreId  String
+  vendorStore    VendorStore @relation(fields: [vendorStoreId], references: [id])
+  Review         Review[]
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+  OrderItem      OrderItem[]
+  CartItem       CartItem[]
+
+  @@map("product")
+}
+
+model Review {
+  id        String   @id @unique @default(uuid())
+  rating    String
+  comment   String
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  productId String
+  product   Product  @relation(fields: [productId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("review")
+}
+
+model Order {
+  id          String      @id @default(uuid())
+  status      OrderStatus @default(PENDING)
+  userId      String
+  user        User        @relation(fields: [userId], references: [id])
+  totalAmount Float
+  createdAt   DateTime    @default(now())
+  orderItems  OrderItem[]
+
+  @@map("order")
+}
+
+model OrderItem {
+  id        String  @id @default(uuid())
+  quantity  Int
+  subtotal  Float
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+  orderId   String
+  Order     Order   @relation(fields: [orderId], references: [id])
+
+  @@map("orderItem")
+}
+
+model Cart {
+  id       String     @id @default(uuid())
+  userId   String
+  User     User       @relation(fields: [userId], references: [id])
+  CartItem CartItem[]
+
+  @@map("cart")
+}
+
+model CartItem {
+  id        String  @id @default(uuid())
+  cartId    String
+  cart      Cart    @relation(fields: [cartId], references: [id])
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+  quantity  String
+
+  @@map("cartItem")
+}
