@@ -7,4 +7,4 @@ const router = express.Router();
 router.post('/signup', hashPassword, AuthController.signUp)
 router.post('/signin', AuthController.signin)
 
-export const AuthRoutes = router;
+export const AuthRoutes = router; 

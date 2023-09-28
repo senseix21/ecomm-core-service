@@ -1,8 +1,10 @@
 import { Server } from 'http';
 import httpStatus from 'http-status';
 import app from "./app";
+import subscribeToEvents from './app/events';
 import config from "./config";
 import ApiError from "./errors/ApiError";
+import { RedisClient } from './shared/redis';
 
 
 process.on('uncaughtException', error => {
@@ -13,6 +15,10 @@ process.on('uncaughtException', error => {
 let server: Server;
 const connectDB = async () => {
     try {
+        await RedisClient.connect().then(() => {
+            subscribeToEvents()
+        });
+
         console.log("Database connection established successfully!");
         app.listen(config.port, () => {
             console.log("App listening on port " + config.port);
@@ -38,6 +44,7 @@ process.on('unhandledRejection', error => {
 
 
 connectDB();
+
 process.on('SIGTERM', () => {
     console.log('SIGTERM is received');
     if (server) {

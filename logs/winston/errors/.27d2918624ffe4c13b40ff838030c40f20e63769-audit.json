@@ -1,0 +1,25 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "C:\\Users\\senseiX\\Dev\\Projects\\Ecommerce_backend\\core-service\\logs\\winston\\errors\\.27d2918624ffe4c13b40ff838030c40f20e63769-audit.json",
+    "files": [
+        {
+            "date": 1695807354093,
+            "name": "C:\\Users\\senseiX\\Dev\\Projects\\Ecommerce_backend\\core-service\\logs\\winston\\errors\\phu-2023-27-09-10-error.log",
+            "hash": "6dd19093c80f4104274adf5d2297743da547b49b4a0299ebc4c6b7214dc29e38"
+        },
+        {
+            "date": 1695816232807,
+            "name": "C:\\Users\\senseiX\\Dev\\Projects\\Ecommerce_backend\\core-service\\logs\\winston\\errors\\phu-2023-27-09-13-error.log",
+            "hash": "f4693a9449f471dfc80908410d9c8c22e150c217fbbdebe74ee0ac60eb23e534"
+        },
+        {
+            "date": 1695893899789,
+            "name": "C:\\Users\\senseiX\\Dev\\Projects\\Ecommerce_backend\\core-service\\logs\\winston\\errors\\phu-2023-28-09-10-error.log",
+            "hash": "c1ea37bdfe9afd0d1631ed377dbb14f9e980763ee122d0abef963ab235be26aa"
+        }
+    ],
+    "hashType": "sha256"
+}

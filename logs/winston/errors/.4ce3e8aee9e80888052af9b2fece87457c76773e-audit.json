@@ -1,0 +1,30 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "C:\\Users\\senseiX\\Dev\\Projects\\Ecommerce_backend\\auth-service\\logs\\winston\\errors\\.4ce3e8aee9e80888052af9b2fece87457c76773e-audit.json",
+    "files": [
+        {
+            "date": 1695721480116,
+            "name": "C:\\Users\\senseiX\\Dev\\Projects\\Ecommerce_backend\\auth-service\\logs\\winston\\errors\\phu-2023-26-09-10-error.log",
+            "hash": "2725f342879169c6f765ae80dbfe467c1b39d03e1cd7bc4839d5f93d4a9b320c"
+        },
+        {
+            "date": 1695725457729,
+            "name": "C:\\Users\\senseiX\\Dev\\Projects\\Ecommerce_backend\\auth-service\\logs\\winston\\errors\\phu-2023-26-09-11-error.log",
+            "hash": "ec3d4418f1e2fb5e4e05f5f7605480a17606e0e5cce1d3703cac6f77d6c93af3"
+        },
+        {
+            "date": 1695726022010,
+            "name": "C:\\Users\\senseiX\\Dev\\Projects\\Ecommerce_backend\\auth-service\\logs\\winston\\errors\\phu-2023-26-09-12-error.log",
+            "hash": "15d8372b8caa0a86f66478f76432e64222a54d7db7dd3d6ec462690aff1f5029"
+        },
+        {
+            "date": 1695805831563,
+            "name": "C:\\Users\\senseiX\\Dev\\Projects\\Ecommerce_backend\\auth-service\\logs\\winston\\errors\\phu-2023-27-09-10-error.log",
+            "hash": "c86596323ea7ace621d239336333a707b5b0e81074049c7f45a5885dc6f7656a"
+        }
+    ],
+    "hashType": "sha256"
+}

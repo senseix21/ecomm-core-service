@@ -5,13 +5,16 @@ import config from "../../../config";
 import ApiError from "../../../errors/ApiError";
 import { jwtHelpers } from "../../../helpers/jwthelpers";
 import { passCompare } from "../../../helpers/passCompare";
+import { RedisClient } from "../../../shared/redis";
 import { prisma } from "../../../utils/prisma";
+import { EVENT_USER_LOGGED_IN, EVENT_USER_REGISTERED } from "./auth.constants";
 import { ILoginResponse, ILoginUser, IUser } from "./auth.interface";
 
 const signUp = async (payload: IUser): Promise<User> => {
     const result = await prisma.user.create({
         data: payload
     })
+    RedisClient.publish(EVENT_USER_REGISTERED, JSON.stringify(event));
     return result;
 };
 
@@ -47,6 +50,8 @@ const signin = async (payload: ILoginUser): Promise<ILoginResponse> => {
         config.jwt.refresh_secret as Secret,
         config.jwt.refresh_expires_in as string
     )
+
+    RedisClient.publish(EVENT_USER_LOGGED_IN, JSON.stringify(event));
 
     return {
         userName: username,
